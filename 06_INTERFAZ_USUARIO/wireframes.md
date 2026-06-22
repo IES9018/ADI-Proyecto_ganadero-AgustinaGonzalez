@@ -5,7 +5,7 @@ Iniciar sesión y redirigir según rol.
 
 Wireframe
 +----------------------------------+
-|        SIGGA MALARGÜE           |
+|        GANADAPP MALARGÜE           |
 +----------------------------------+
 | Usuario:   [______________]      |
 | Contraseña:[______________]      |
@@ -14,7 +14,8 @@ Wireframe
 |                                  |
 |  ¿Olvidó su contraseña?          |
 +----------------------------------+
-Flujo Mermaid
+Flujo 
+```Mermaid
 sequenceDiagram
 actor Usuario
 participant UI
@@ -24,6 +25,8 @@ Usuario->>UI: Ingresa credenciales
 UI->>Sistema: Validar usuario
 Sistema-->>UI: Resultado validación
 UI-->>Usuario: Redirección por rol
+```
+
 UX
 Campos mínimos
 Mensajes de error claros
@@ -47,6 +50,7 @@ Wireframe
 |      | [Stock bajo]               |
 +--------------------------------------+
 Flujo
+```mermaid
 sequenceDiagram
 actor Usuario
 participant UI
@@ -56,6 +60,7 @@ Usuario->>UI: Accede al dashboard
 UI->>Sistema: Solicitar resumen
 Sistema-->>UI: Datos consolidados
 UI-->>Usuario: Mostrar panel
+```
 UX
 Información crítica priorizada
 Tarjetas simples
@@ -77,6 +82,7 @@ Wireframe
 | Ana    | xxx | Bardas      |
 +------------------------------+
 Flujo
+```mermaid
 sequenceDiagram
 actor Admin
 participant UI
@@ -87,6 +93,8 @@ UI->>Sistema: Solicitar lista
 Sistema-->>UI: Lista productores
 Admin->>UI: Crear/editar productor
 UI->>Sistema: Guardar cambios
+```
+
 4. Gestión de Animales
 Objetivo
 
@@ -103,6 +111,7 @@ Wireframe
 | 01 | Angus| Sano   | Campo1 |
 +------------------------------+
 Flujo
+```mermaid
 sequenceDiagram
 actor Usuario
 participant UI
@@ -113,6 +122,7 @@ UI->>Sistema: Consultar registros
 Sistema-->>UI: Lista animales
 Usuario->>UI: Registrar animal
 UI->>Sistema: Guardar datos
+```
 UX
 Identificación por ID único
 Estado visible claramente
@@ -135,6 +145,7 @@ Wireframe
 | Animal | Vacuna | Fecha    |
 +------------------------------+
 Flujo
+```mermaid
 sequenceDiagram
 actor Técnico
 participant UI
@@ -144,6 +155,7 @@ Técnico->>UI: Registra vacuna
 UI->>Sistema: Guardar vacunación
 Sistema-->>UI: Confirmación
 UI-->>Técnico: Historial actualizado
+```
 6. Stock de insumos
 Objetivo
 
@@ -161,6 +173,7 @@ Wireframe
 | Alim   | 2        | BAJO   |
 +------------------------------+
 Flujo
+```mermaid
 sequenceDiagram
 actor Usuario
 participant UI
@@ -169,6 +182,7 @@ participant Sistema
 Usuario->>UI: Consulta stock
 UI->>Sistema: Obtener inventario
 Sistema-->>UI: Lista insumos
+```
 7. Movimientos de ganado
 Objetivo
 
@@ -185,6 +199,7 @@ Wireframe
 | [Registrar]               |
 +------------------------------+
 Flujo
+```mermaid
 sequenceDiagram
 actor Técnico
 participant UI
@@ -193,6 +208,7 @@ participant Sistema
 Técnico->>UI: Registra movimiento
 UI->>Sistema: Guardar trazabilidad
 Sistema-->>UI: Confirmación
+```
 8. Reportes
 Objetivo
 
@@ -209,6 +225,7 @@ Wireframe
 | [Exportar PDF]            |
 +------------------------------+
 Flujo
+```mermaid
 sequenceDiagram
 actor Admin
 participant UI
@@ -217,12 +234,14 @@ participant Sistema
 Admin->>UI: Solicita reporte
 UI->>Sistema: Generar datos
 Sistema-->>UI: Reporte listo
+```
 9. Usuarios y roles
 Objetivo
 
 Administrar usuarios del sistema.
 
 Flujo
+```mermaid
 sequenceDiagram
 actor Admin
 participant UI
@@ -231,12 +250,14 @@ participant Sistema
 Admin->>UI: Gestiona usuarios
 UI->>Sistema: Crear/editar usuario
 Sistema-->>UI: Confirmación
+```
 10. Configuración del sistema
 Objetivo
 
 Configurar parámetros generales.
 
 Flujo
+```mermaid
 sequenceDiagram
 actor Admin
 participant UI
@@ -246,3 +267,4 @@ Admin->>UI: Accede a configuración
 UI->>Sistema: Obtener parámetros
 Admin->>UI: Modifica ajustes
 UI->>Sistema: Guardar configuración
+```
