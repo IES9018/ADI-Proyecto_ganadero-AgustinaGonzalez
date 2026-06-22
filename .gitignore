@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+venv/
+.env/
+
+# FastAPI / general backend
+*.log
+
+# Node (si usas frontend)
+node_modules/
+dist/
+build/
+
+# IDEs
+.vscode/
+.idea/
+
+# sistema operativo
+.DS_Store
