@@ -14,7 +14,7 @@ flowchart LR
 
     GA -->|Persistencia de datos| DB
 
-
+```
 Descripción del sistema
 
 GanadApp es un sistema de gestión ganadera orientado a productores rurales de Malargüe. Permite digitalizar procesos de administración de ganado, sanidad, stock y trazabilidad.
