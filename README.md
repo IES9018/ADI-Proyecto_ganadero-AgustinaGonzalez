@@ -114,13 +114,21 @@ persistencia: modelo relacional
 El repositorio está organizado en módulos educativos y arquitectónicos:
 
 00_REFERENCIAS/           análisis del dominio y requisitos
+
 01_PLAN_MAESTRO/          visión general y decisiones estratégicas
+
 02_CASOS_DE_USO/          modelado funcional del sistema
+
 03_ARQUITECTURA/          diseño arquitectónico (C4, ADR, patrones)
+
 04_MODELO_DATOS/          modelo de dominio y persistencia
+
 05_AGENTES_IA/            metodología de agentes de desarrollo
+
 06_INTERFAZ_USUARIO/      diseño UI/UX y prototipos
+
 07_IMPLEMENTACION/        guías técnicas y convenciones
+
 08_CODIGO_FUENTE/         implementación real del sistema
-    ├── src/
-    └── tests/
+
+ 
