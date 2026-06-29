@@ -1,29 +1,285 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Animales</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load static %}
 
-<h1>Listado de animales</h1>
+{% block title %}Gestión de Animales{% endblock %}
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for animal in animales %}
-        <tr>
-            <td>{{ animal.id }}</td>
-            <td>{{ animal.nombre }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+{% block content %}
 
-</body>
-</html>
+<section class="page-header">
+
+    <h1>Gestión de Animales</h1>
+
+    <p>
+        Alta, edición, eliminación y consulta del ganado registrado.
+    </p>
+
+</section>
+
+<section class="formulario">
+
+    <input
+        type="text"
+        id="codigo"
+        placeholder="Código">
+
+    <input
+        type="text"
+        id="especie"
+        placeholder="Especie">
+
+    <input
+        type="text"
+        id="raza"
+        placeholder="Raza">
+
+    <input
+        type="number"
+        id="edad"
+        placeholder="Edad">
+
+    <input
+        type="text"
+        id="estado"
+        placeholder="Estado">
+
+    <div class="acciones">
+
+        <button onclick="guardarAnimal()">
+
+            Guardar / Actualizar
+
+        </button>
+
+        <button onclick="listar()">
+
+            Actualizar Lista
+
+        </button>
+
+        <button onclick="location.href='/'">
+
+            Volver
+
+        </button>
+
+    </div>
+
+</section>
+
+<section>
+
+    <table class="tabla">
+
+        <thead>
+
+            <tr>
+
+                <th>ID</th>
+                <th>Código</th>
+                <th>Especie</th>
+                <th>Raza</th>
+                <th>Edad</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="lista">
+
+        </tbody>
+
+    </table>
+
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+
+let animalEditandoId = null;
+
+function getFormData(){
+
+    return{
+
+        codigo:document.getElementById("codigo").value,
+
+        especie:document.getElementById("especie").value,
+
+        raza:document.getElementById("raza").value,
+
+        edad:document.getElementById("edad").value,
+
+        estado:document.getElementById("estado").value
+
+    };
+
+}
+
+function limpiarFormulario(){
+
+    animalEditandoId=null;
+
+    document.getElementById("codigo").value="";
+    document.getElementById("especie").value="";
+    document.getElementById("raza").value="";
+    document.getElementById("edad").value="";
+    document.getElementById("estado").value="";
+
+}
+
+async function guardarAnimal(){
+
+    const data=getFormData();
+
+    if(animalEditandoId==null){
+
+        await fetch("/animales",{
+
+            method:"POST",
+
+            headers:{
+
+                "Content-Type":"application/json"
+
+            },
+
+            body:JSON.stringify(data)
+
+        });
+
+    }
+
+    else{
+
+        await fetch(`/animales/${animalEditandoId}`,{
+
+            method:"PUT",
+
+            headers:{
+
+                "Content-Type":"application/json"
+
+            },
+
+            body:JSON.stringify(data)
+
+        });
+
+    }
+
+    limpiarFormulario();
+
+    listar();
+
+}
+async function listar(){
+
+    const respuesta = await fetch("/animales");
+
+    const animales = await respuesta.json();
+
+    let html = "";
+
+    animales.forEach(animal => {
+
+        html += `
+
+            <tr>
+
+                <td>${animal.id}</td>
+
+                <td>${animal.codigo}</td>
+
+                <td>${animal.especie}</td>
+
+                <td>${animal.raza}</td>
+
+                <td>${animal.edad}</td>
+
+                <td>${animal.estado}</td>
+
+                <td>
+
+                    <button onclick='editar(${JSON.stringify(animal)})'>
+
+                        Editar
+
+                    </button>
+
+                    <button onclick='location.href="/sanidad/${animal.id}"'>
+
+                        Sanidad
+
+                    </button>
+
+                    <button onclick='eliminarAnimal(${animal.id})'>
+
+                        Eliminar
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+    document.getElementById("lista").innerHTML = html;
+
+}
+
+/*=========================================
+    EDITAR
+=========================================*/
+
+function editar(animal){
+
+    animalEditandoId = animal.id;
+
+    document.getElementById("codigo").value = animal.codigo;
+
+    document.getElementById("especie").value = animal.especie;
+
+    document.getElementById("raza").value = animal.raza;
+
+    document.getElementById("edad").value = animal.edad;
+
+    document.getElementById("estado").value = animal.estado;
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+}
+
+/*=========================================
+    ELIMINAR
+=========================================*/
+
+async function eliminarAnimal(id){
+
+    if(!confirm("¿Eliminar animal?")) return;
+
+    await fetch(`/animales/${id}`, {
+
+        method: "DELETE"
+
+    });
+
+    listar();
+
+}
+window.onload = function(){
+
+    listar();
+
+};
+
+</script>
+
+{% endblock %}

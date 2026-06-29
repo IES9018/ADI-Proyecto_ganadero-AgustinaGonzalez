@@ -1,49 +1,204 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Ganadapp</title>
-    <link rel="stylesheet" href="../static/styles.css">
-</head>
-<body>
+{% extends "base.html" %}
+{% load static %}
 
-<header class="topbar">
-    <div class="brand">
-        <img src="../static/img/logo.png" alt="Logo" class="logo-main">
-        <span class="brand-name">Ganadapp</span>
-    </div>
-    <nav class="menu">
-        <button><img src="../static/img/icon-inicio.png"> Inicio</button>
-        <button><img src="../static/img/icon-panel.png"> Panel Principal</button>
-        <button><img src="../static/img/icon-productores.png"> Panel de Productores</button>
-        <button><img src="../static/img/icon-animales.png"> Gestión de Animales</button>
-        <button><img src="../static/img/icon-vacunacion.png"> Vacunación</button>
-        <button><img src="../static/img/icon-stock.png"> Stock de Insumos</button>
-        <button><img src="../static/img/icon-trazabilidad.png"> Trazabilidad</button>
-        <button><img src="../static/img/icon-reportes.png"> Reportes</button>
-    </nav>
-</header>
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
 
 <section class="hero">
+
     <div class="hero-content">
-        <h1>Ganadapp: Gestión Inteligente de Ganado</h1>
-        <p>Centralice el control de su hacienda, productores, salud y trazabilidad.</p>
-        <button class="btn-hero">Ver Animales ></button>
+
+        <h1>Gestión Inteligente de Ganado</h1>
+
+        <p>
+            Centralice el control de productores, animales, sanidad,
+            trazabilidad e inventario desde una única plataforma.
+        </p>
+
+        <button
+            class="btn-hero"
+            onclick="location.href='/animales/'">
+
+            Ver animales
+
+        </button>
+
     </div>
+
 </section>
 
-<main class="grid-cards">
-    <div class="card"><div class="icon-box"><img src="../static/img/icon-inicio.png"></div> <h3>Inicio de Sesión</h3><p>Inicie sesión de forma segura del stock y sus productos.</p><button>Abrir</button></div>
-    <div class="card"><div class="icon-box"><img src="../static/img/icon-panel.png"></div> <h3>Panel Principal</h3><p>Centralice el conoctos, clientes, eventatales depitas.</p><button>Abrir</button></div>
-    <div class="card"><div class="icon-box"><img src="../static/img/icon-productores.png"></div> <h3>Productores</h3><p>Gestione sus panel de productores y tags.</p><button>Abrir</button></div>
-    <div class="card"><div class="icon-box"><img src="../static/img/icon-animales.png"></div> <h3>Animales</h3><p>Gestione sus animales animales y razunitados.</p><button>Abrir</button></div>
-    <div class="card"><div class="icon-box"><img src="../static/img/icon-vacunacion.png"></div> <h3>Vacunación</h3><p>Gestione sus vacunacön y vacunación.</p><button>Abrir</button></div>
-    <div class="card"><div class="icon-box"><img src="../static/img/icon-stock.png"></div> <h3>Stock Insumos</h3><p>Centalisivs Stock Insumos palleta de Insumos.</p><button>Abrir</button></div>
-    <div class="card"><div class="icon-box"><img src="../static/img/icon-trazabilidad.png"></div> <h3>Trazabilidad</h3><p>Concaine sus trazabilidad y antanetraltarios.</p><button>Abrir</button></div>
-    <div class="card"><div class="icon-box"><img src="../static/img/icon-reportes.png"></div> <h3>Reportes</h3><p>Administre sus reportes y consulte su ri reportes.</p><button>Abrir</button></div>
-</main>
+<section class="grid-cards">
 
-<footer>© 2026 Ganadapp - Soluciones de Gestión Ganadera - Todos los derechos reservados</footer>
+    <div class="card">
 
-</body>
-</html>
+        <div class="icon-box">
+
+            <img src="{% static 'img/icon-panel.png' %}" alt="Panel">
+
+        </div>
+
+        <h3>Panel Principal</h3>
+
+        <p>
+
+            Visualice rápidamente el estado general del establecimiento.
+
+        </p>
+
+        <button>
+
+            Abrir
+
+        </button>
+
+    </div>
+
+    <div class="card">
+
+        <div class="icon-box">
+
+            <img src="{% static 'img/icon-productores.png' %}" alt="Productores">
+
+        </div>
+
+        <h3>Productores</h3>
+
+        <p>
+
+            Administración de productores y establecimientos.
+
+        </p>
+
+        <button>
+
+            Próximamente
+
+        </button>
+
+    </div>
+
+    <div class="card">
+
+        <div class="icon-box">
+
+            <img src="{% static 'img/icon-animales.png' %}" alt="Animales">
+
+        </div>
+
+        <h3>Gestión de Animales</h3>
+
+        <p>
+
+            Alta, modificación, eliminación y consulta de animales.
+
+        </p>
+
+        <button
+            onclick="location.href='/animales/'">
+
+            Abrir
+
+        </button>
+
+    </div>
+
+    <div class="card">
+
+        <div class="icon-box">
+
+            <img src="{% static 'img/icon-vacunacion.png' %}" alt="Sanidad">
+
+        </div>
+
+        <h3>Vacunación</h3>
+
+        <p>
+
+            Historial sanitario, vacunas y tratamientos.
+
+        </p>
+
+        <button
+            onclick="location.href='/sanidad/'">
+
+            Abrir
+
+        </button>
+
+    </div>
+        <div class="card">
+
+        <div class="icon-box">
+
+            <img src="{% static 'img/icon-stock.png' %}" alt="Stock">
+
+        </div>
+
+        <h3>Stock de Insumos</h3>
+
+        <p>
+
+            Control de medicamentos, alimentos y suministros.
+
+        </p>
+
+        <button>
+
+            Próximamente
+
+        </button>
+
+    </div>
+
+    <div class="card">
+
+        <div class="icon-box">
+
+            <img src="{% static 'img/icon-trazabilidad.png' %}" alt="Trazabilidad">
+
+        </div>
+
+        <h3>Trazabilidad</h3>
+
+        <p>
+
+            Seguimiento completo del historial de cada animal.
+
+        </p>
+
+        <button>
+
+            Próximamente
+
+        </button>
+
+    </div>
+
+    <div class="card">
+
+        <div class="icon-box">
+
+            <img src="{% static 'img/icon-reportes.png' %}" alt="Reportes">
+
+        </div>
+
+        <h3>Reportes</h3>
+
+        <p>
+
+            Informes y estadísticas de producción.
+
+        </p>
+
+        <button>
+
+            Próximamente
+
+        </button>
+
+    </div>
+
+</section>
+
+{% endblock %}

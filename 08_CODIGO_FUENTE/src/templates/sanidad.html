@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Sanidad{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+
+    <h1>Módulo Sanitario</h1>
+
+    <p>
+        Gestión de eventos sanitarios por animal (vacunación, tratamientos, controles).
+    </p>
+
+</section>
+
+<section class="selector-animal">
+
+    <label>Animal ID:</label>
+
+    <input
+        type="number"
+        id="animalIdInput"
+        placeholder="Ingrese ID del animal">
+
+    <button onclick="cargarSanidad()">
+        Cargar historial
+    </button>
+
+    <button onclick="location.href='/animales/'">
+        Volver a animales
+    </button>
+
+</section>
+
+<section id="sanidadPanel">
+
+    <p>Seleccione un animal para ver su historial sanitario.</p>
+
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+
+let animalSeleccionado = null;
+
+async function cargarSanidad(){
+
+    const id = document.getElementById("animalIdInput").value;
+
+    if(!id){
+        alert("Ingrese un ID");
+        return;
+    }
+
+    animalSeleccionado = id;
+
+    const respuesta = await fetch(`/animales/${id}/sanidad`);
+
+    const eventos = await respuesta.json();
+
+    renderSanidad(eventos, id);
+
+}
+
+function renderSanidad(eventos, id){
+
+    let html = `
+
+        <h2>Animal #${id}</h2>
+
+        <div class="form-sanidad">
+
+            <input id="tipo_evento" placeholder="Tipo de evento">
+
+            <input id="descripcion" placeholder="Descripción">
+
+            <input id="fecha" type="date">
+
+            <button onclick="crearEvento()">
+                Guardar evento
+            </button>
+
+        </div>
+
+        <h3>Historial sanitario</h3>
+
+        <ul>
+
+    `;
+
+    eventos.forEach(e => {
+
+        html += `
+
+            <li>
+
+                <strong>${e.fecha}</strong>
+                - ${e.tipo_evento}
+                - ${e.descripcion}
+
+                <button onclick="eliminarEvento(${e.id})">
+                    Eliminar
+                </button>
+
+            </li>
+
+        `;
+
+    });
+
+    html += `</ul>`;
+
+    document.getElementById("sanidadPanel").innerHTML = html;
+
+}
+async function crearEvento(){
+
+    const data = {
+
+        tipo_evento: document.getElementById("tipo_evento").value,
+
+        descripcion: document.getElementById("descripcion").value,
+
+        fecha: document.getElementById("fecha").value
+
+    };
+
+    await fetch(`/animales/${animalSeleccionado}/sanidad`, {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify(data)
+
+    });
+
+    cargarSanidad();
+
+}
+
+async function eliminarEvento(id){
+
+    if(!confirm("¿Eliminar evento sanitario?")) return;
+
+    await fetch(`/sanidad/${id}`, {
+
+        method: "DELETE"
+
+    });
+
+    cargarSanidad();
+
+}
+
+window.onload = function(){
+
+    animalSeleccionado = null;
+
+};
+
+</script>
+
+{% endblock %}
