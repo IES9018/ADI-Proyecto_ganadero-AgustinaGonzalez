@@ -19,7 +19,7 @@ body { margin: 0; font-family: Arial, sans-serif; background-color: #f5f1ec; }
     background-position: center; 
     padding: 140px 20px 80px 20px; 
     text-align: center; 
-    color: white; 
+    color: white;
 }
 .hero h1 { margin: 10px 0; font-size: 36px; }
 .hero p { font-size: 18px; color: #f0e6dd; margin-bottom: 25px; }
