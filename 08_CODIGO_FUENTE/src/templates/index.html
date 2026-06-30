@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<title>Ganadapp</title>
+<link rel="stylesheet" href="../static/styles.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+<div class="brand">
+<img src="../static/img/logo.png" alt="Logo" class="logo-main">
+<span class="brand-name">Ganadapp</span>
+</div>
+
+<nav class="menu">
+
+<button><img src="../static/img/icon-inicio.png"> Inicio</button>
+
+<button><img src="../static/img/icon-panel.png"> Panel Principal</button>
+
+<button><img src="../static/img/icon-productores.png"> Panel de Productores</button>
+
+<button onclick="location.href='/animales'">
+<img src="../static/img/icon-animales.png"> Gestión de Animales
+</button>
+
+
+<button onclick="location.href='/sanidad'">
+<img src="../static/img/icon-vacunacion.png"> Vacunación
+</button>
+
+<button><img src="../static/img/icon-stock.png"> Stock de Insumos</button>
+
+<button><img src="../static/img/icon-trazabilidad.png"> Trazabilidad</button>
+
+<button><img src="../static/img/icon-reportes.png"> Reportes</button>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>Gestión Inteligente de Ganado</h1>
+
+<p>Centralice el control de su hacienda, productores, salud y trazabilidad.</p>
+
+<button class="btn-hero" onclick="location.href='./animales'">
+Ver Animales >
+</button>
+
+</div>
+
+</section>
+
+<main class="grid-cards">
+
+<div class="card">
+<div class="icon-box"><img src="../static/img/icon-inicio.png"></div>
+<h3>Inicio de Sesión</h3>
+<p>Acceda de forma segura a su panel de control para gestionar su inventario y productos.</p>
+<button>Abrir</button>
+</div>
+
+<div class="card">
+<div class="icon-box"><img src="../static/img/icon-panel.png"></div>
+<h3>Panel Principal</h3>
+<p>Visualice resúmenes estadísticos, alertas pendientes y actividades recientes de la hacienda.</p>
+<button>Abrir</button>
+</div>
+
+<div class="card">
+<div class="icon-box"><img src="../static/img/icon-productores.png"></div>
+<h3>Productores</h3>
+<p>Gestione el directorio de productores, contactos y datos de contacto asociados.</p>
+<button>Abrir</button>
+</div>
+
+<div class="card">
+<div class="icon-box"><img src="../static/img/icon-animales.png"></div>
+<h3>Gestión Animal</h3>
+<p>Administre el registro, historial, razas y estados de salud de sus animales.</p>
+<button onclick="location.href='/animales'">Abrir</button>
+</div>
+
+<div class="card">
+<div class="icon-box"><img src="../static/img/icon-vacunacion.png"></div>
+<h3>Vacunación</h3>
+<p>Lleve un control preciso de los planes sanitarios y fechas de vacunación programadas.</p>
+<button onclick="location.href='/sanidad'">Abrir</button>
+</div>
+
+<div class="card">
+<div class="icon-box"><img src="../static/img/icon-stock.png"></div>
+<h3>Stock de Insumos</h3>
+<p>Controle el inventario de medicamentos, alimentos y suministros disponibles.</p>
+<button>Abrir</button>
+</div>
+
+<div class="card">
+<div class="icon-box"><img src="../static/img/icon-trazabilidad.png"></div>
+<h3>Trazabilidad</h3>
+<p>Rastree el historial completo de eventos y movimientos de cada animal en el campo.</p>
+<button>Abrir</button>
+</div>
+
+<div class="card">
+<div class="icon-box"><img src="../static/img/icon-reportes.png"></div>
+<h3>Reportes</h3>
+<p>Genere informes detallados sobre productividad, ventas y estado general del ganado.</p>
+<button>Abrir</button>
+</div>
+
+</main>
+
+<footer>© 2026 Ganadapp - Soluciones de Gestión Ganadera - Todos los derechos reservados</footer>
+
+</body>
+</html>

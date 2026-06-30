@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle Animal - Sanidad</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="brand">
+        <img src="../static/img/logo.png" class="logo-main">
+        <span class="brand-name">Ganadapp</span>
+    </div>
+</header>
+
+<main class="container">
+
+    <h2>Módulo Sanitario del Animal</h2>
+
+    <div id="sanidadPanel">
+        <p>Cargando información...</p>
+    </div>
+
+</main>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const animalId = params.get("id");
+
+async function cargar() {
+    const res = await fetch(`/api/animales/${animalId}/sanidad`);
+    const data = await res.json();
+    render(data);
+}
+
+function render(data) {
+
+    document.getElementById("sanidadPanel").innerHTML = `
+        <h3>Animal ID: ${animalId}</h3>
+
+        <input id="tipo_evento" placeholder="Tipo evento">
+        <input id="descripcion" placeholder="Descripción">
+        <input id="fecha" type="date">
+
+        <button onclick="crear()">Guardar evento</button>
+
+        <h4>Historial sanitario</h4>
+
+        <ul>
+            ${data.map(e => `
+                <li>
+                    ${e.fecha} - ${e.tipo_evento} - ${e.descripcion}
+                    <button onclick="eliminar(${e.id})">Eliminar</button>
+                </li>
+            `).join("")}
+        </ul>
+    `;
+}
+
+async function crear() {
+
+    await fetch(`/api/animales/${animalId}/sanidad`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            tipo_evento: document.getElementById("tipo_evento").value,
+            descripcion: document.getElementById("descripcion").value,
+            fecha: document.getElementById("fecha").value
+        })
+    });
+
+    cargar();
+}
+
+async function eliminar(id) {
+    await fetch(`/api/sanidad/${id}`, { method: "DELETE" });
+    cargar();
+}
+
+document.addEventListener("DOMContentLoaded", cargar);
+
+</script>
+
+</body>
+</html>

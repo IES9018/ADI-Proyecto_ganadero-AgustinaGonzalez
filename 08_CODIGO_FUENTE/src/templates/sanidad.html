@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Módulo Sanidad</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="brand">
+        <img src="../static/img/logo.png" class="logo-main">
+        <span class="brand-name">Ganadapp</span>
+    </div>
+</header>
+
+<main class="container">
+
+    <h2>Sanidad General</h2>
+
+    <p>Seleccione un animal desde el módulo de animales para ver su historial.</p>
+
+    <div id="sanidadGlobal">
+        <p>No hay animal seleccionado.</p>
+    </div>
+
+</main>
+
+<script>
+
+async function cargarSanidadGlobal() {
+    document.getElementById("sanidadGlobal").innerHTML =
+        "<p>Este módulo funciona como vista de referencia. Accede desde un animal específico.</p>";
+}
+
+document.addEventListener("DOMContentLoaded", cargarSanidadGlobal);
+
+</script>
+
+</body>
+</html>
